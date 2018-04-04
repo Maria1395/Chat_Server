@@ -11,6 +11,7 @@ class UDPClient
       byte[] sendData = new byte[1024];
       byte[] receiveData = new byte[1024];
       boolean flag=true;
+      
       while(flag)
        {
       String sentence = inFromUser.readLine();
@@ -19,7 +20,7 @@ class UDPClient
       clientSocket.send(sendPacket);
       DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
       clientSocket.receive(receivePacket);
-      String modifiedSentence = new String(receivePacket.getData());
+      String modifiedSentence = new String(receivePacket.getData(),0,receivePacket.getLength());
       System.out.println("FROM SERVER:" + modifiedSentence);
        if(sentence.equals("bye"))
         flag=false;
